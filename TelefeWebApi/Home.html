@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Telefe Examen</title>
+    <script src="Scripts/jquery-3.3.1.js" type="text/javascript"></script>
+    <style>
+        .vertical-menu {
+            width: 200px;
+        }
+
+            .vertical-menu a {
+                background-color: #eee;
+                color: black;
+                display: block;
+                padding: 12px;
+                text-decoration: none;
+            }
+
+                .vertical-menu a:hover {
+                    background-color: #ccc;
+                }
+
+                .vertical-menu a.active {
+                    background-color: #4CAF50;
+                    color: white;
+                }
+        </style>
+    <script type="text/javascript">
+
+        function Historial() {
+
+            $.ajax({
+                type: 'GET',
+                url: 'api/Historial',
+                dataType: 'json',
+                success: function (data) {
+                    var ulHistorial = $("#UlHistorial");
+                    ulHistorial.empty();
+                    $.each(data, function (index, val) {
+                        ulHistorial.append('<li  style="list-style:none">' + val.Valor + '</li>')
+                    });
+                }
+            });
+        }
+
+        function Search() {
+                var valor = $("#txtSearch").val();
+
+                $.ajax({
+                    type: 'GET',
+                    url: '/api/values?word=' + valor,
+                    dataType: 'json',
+                    success: function (data) {
+                        $("#Coordenadas").html("Las coordenadas en la matriz son: <br>" + data);
+                    },
+                    error: function (x, e) {
+                        alert(x.responseText);
+                    }  
+                });
+            }
+
+        function VerHistorial()
+        {
+            $("#Principal").css("display", "none");
+            $("#Historial").css("display", "block");
+            Historial();
+        }
+        function VerHome()
+        {
+            $("#Principal").css("display", "block");
+            $("#Historial").css("display", "none");
+        }
+
+        $(document).ready(function () {
+                $("#btnSearch").click(function (e) {
+                    Search();
+                    //AddEmp();
+                    //e.preventDefault();
+                });
+            });
+
+        </script>
+</head>
+<body>
+        <div class="vertical-menu">
+            <a href="javascript:VerHome();" class="active">Home</a>
+            <a href="javascript:VerHistorial();">Historial</a>
+        </div>
+        <br /><br />
+        <div id="Principal" style="width:300px; margin:auto; text-align:center; border:solid 1px">
+            <p>Palabra a Buscar</p>
+            <input type="text" id="txtSearch" /><br /><br />
+            <input type="button" value="Buscar" id="btnSearch" />
+            <p id="Coordenadas"></p>
+        </div>
+        <div id="Historial" style="width:400px; margin:auto; text-align:center; border:solid 1px; display:none;">
+            <ul id="UlHistorial"></ul>
+        </div>
+        <br />
+</body>
+</html>  

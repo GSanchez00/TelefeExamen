@@ -1,0 +1,5 @@
+C:\Users\Gustavo\source\repos\TelefeWebApi\SopaDeLetras\bin\Debug\SopaDeLetras.dll
+C:\Users\Gustavo\source\repos\TelefeWebApi\SopaDeLetras\bin\Debug\SopaDeLetras.pdb
+C:\Users\Gustavo\source\repos\TelefeWebApi\SopaDeLetras\obj\Debug\SopaDeLetras.csproj.CoreCompileInputs.cache
+C:\Users\Gustavo\source\repos\TelefeWebApi\SopaDeLetras\obj\Debug\SopaDeLetras.dll
+C:\Users\Gustavo\source\repos\TelefeWebApi\SopaDeLetras\obj\Debug\SopaDeLetras.pdb
